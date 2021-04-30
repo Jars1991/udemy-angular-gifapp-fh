@@ -1,1 +1,12 @@
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quam minus assumenda ex repellendus omnis ipsa voluptatem placeat, deleniti soluta reiciendis ut illo fugiat non optio voluptate quidem totam ipsum!
+<div class="row">
+  <div class="col-md-4 col-sm-6" *ngFor="let result of searchResults">
+    <div class="card">
+      <img [src]="get_image_url(result)" [alt]="result.title" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text">
+          {{ result.title }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class GifsService {
 
   private _searchHistory: string[] = [];
+  public searchResults: any[] = [];
 
   private _API_KEY = 'qg8MHYLy7gB3gwMhNlJI76T6rMQEWNiL';
   private _API_URL = 'https://api.giphy.com/v1/gifs/search';
@@ -32,6 +33,7 @@ export class GifsService {
     this._HttpClient.get(this._API_URL, {params: _params})
       .subscribe((response: any) => {
         console.log(response.data);
+        this.searchResults = response.data;
       })
   }
 
