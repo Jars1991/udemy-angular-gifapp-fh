@@ -19,7 +19,9 @@ export class GifsService {
     return [...this._searchHistory];
   }
 
-  constructor(private _HttpClient: HttpClient) { }
+  constructor(private _HttpClient: HttpClient) {
+    this._searchHistory = JSON.parse(localStorage.getItem('gifs_app_searchHistory')!) || [];
+   }
 
   search(query: string) {
     query = query.trim().toLowerCase();
@@ -28,6 +30,8 @@ export class GifsService {
       this._searchHistory.unshift(query);
       this._searchHistory = this._searchHistory.slice(0, 10);
       console.log(this._searchHistory);
+
+      localStorage.setItem('gifs_app_searchHistory', JSON.stringify(this._searchHistory));
     };
 
     const _params = {q: query, api_key: this._API_KEY, limit: `${this._PAGINATION_LIMIT}`};
