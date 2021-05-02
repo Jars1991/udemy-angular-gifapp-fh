@@ -21,6 +21,8 @@ export class GifsService {
 
   constructor(private _HttpClient: HttpClient) {
     this._searchHistory = JSON.parse(localStorage.getItem('gifs_app_searchHistory')!) || [];
+
+    this.searchResults = JSON.parse(localStorage.getItem('gifs_app_searchResults')!) || [];
    }
 
   search(query: string) {
@@ -40,6 +42,8 @@ export class GifsService {
       .subscribe((response) => {
         console.log(response.data);
         this.searchResults = response.data;
+
+        localStorage.setItem('gifs_app_searchResults', JSON.stringify(this.searchResults));
       })
   }
 
